@@ -1,6 +1,18 @@
 venv/
 __pycache__/
 *.pyc
+*.pyo
 .env
 .idea/
 .vscode/
+.DS_Store
+
+# Frontend ignores (if running from root)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.eslintcache
+frontend/coverage/
+frontend/.env
+frontend/.env.*
+frontend/!.env.example

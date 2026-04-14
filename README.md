@@ -1,19 +1,21 @@
-# MediMind 🧠🤖
+# MediMind 🧠⚕️
 
-An intelligent, futuristic healthcare decision-support system prototype using Machine Learning.
+A premium, production-grade clinical decision-support system utilizing Machine Learning for healthcare analytics.
 
 ## Overview
-MediMind processes medical data to provide predictive insights (disease risk assessment) with interpretable outputs. The platform features a state-of-the-art "JARVIS-style" cybernetic HUD interface built with React and a robust Machine Learning inference backend built with FastAPI and scikit-learn. The core of this phase is predicting heart disease risk based on patient vital metrics and historical data (using the UCI Heart Disease Dataset).
+MediMind processes complex medical and diagnostic data to provide predictive cardiovascular insights with interpretable outputs. The platform features a high-end, asymmetric clinical dashboard built with React and Vanilla CSS (designed to feel like a modern, flagship SaaS product), and a robust Machine Learning inference backend executed via FastAPI and scikit-learn.
+
+The core of this phase predicts heart disease risk based on patient vital metrics and historical data, leveraging the UCI Heart Disease Dataset.
 
 ## Project Structure
-- `frontend/`: The React+Vite web application featuring a highly interactive, futuristic diagnostic HUD.
-- `main.py`: The FastAPI backend application that serves the ML model via a REST API.
-- `train_model.py`: Fetches the Heart Disease Dataset, preprocesses it, builds an ML pipeline (imputation, scaling, Random Forest), trains the model, and exports it as `medimind_model.joblib`.
-- `verify_model.py`: Loads the trained `.joblib` model and simulates a live inference on sample patient data in the terminal.
+- `frontend/`: The React+Vite web application featuring a deep-themed, clean healthcare interface with dynamic interactive reporting graphs.
+- `main.py`: The FastAPI backend application simulating the secure medical data API and serving the ML model.
+- `train_model.py`: Automates the ML pipeline (data fetching, imputation, scaling, Random Forest training) and exports the diagnostic model as `medimind_model.joblib`.
+- `verify_model.py`: Local terminal verification logic to simulate live inference using the `.joblib` export.
 
 ## Setup Instructions
 
-### 1. Backend Setup (Python, FastAPI & Machine Learning)
+### 1. Backend Setup (FastAPI & ML)
 
 1. **Create and Activate Virtual Environment**
    ```bash
@@ -28,7 +30,7 @@ MediMind processes medical data to provide predictive insights (disease risk ass
    ```
 
 3. **Train the Initial Model (Optional)**
-   The repository already includes a pre-trained model (`medimind_model.joblib`). If you want to retrain it:
+   The repo may include a pre-trained model (`medimind_model.joblib`). To retrain or fetch fresh data:
    ```bash
    python train_model.py
    ```
@@ -37,7 +39,7 @@ MediMind processes medical data to provide predictive insights (disease risk ass
    ```bash
    python main.py
    ```
-   *Alternatively, run `uvicorn main:app --reload`. The backend will start on `http://localhost:8000`.*
+   *Alternatively, run `uvicorn main:app --reload`. The backend routes through `http://localhost:8000`.*
 
 ### 2. Frontend Setup (React + Vite)
 
@@ -47,18 +49,17 @@ MediMind processes medical data to provide predictive insights (disease risk ass
    ```
 
 2. **Install Node modules**
-   *(Ensure you have Node.js installed)*
    ```bash
    npm install
    ```
 
-3. **Run the Development Environment**
+3. **Run the Development UI**
    ```bash
    npm run dev
    ```
-   *The futuristic HUD UI will be accessible locally, typically at `http://localhost:5173`. It expects the FastAPI backend to be running on port 8000.*
+   *The premium clinical dashboard will be accessible locally at `http://localhost:5173`. Ensure the FastAPI server is actively routing requests on port 8000.*
 
-## Technologies Used
-- **Frontend**: React.js, Vite, Framer Motion, Vanilla CSS, Lucide React
+## Technologies
+- **Frontend**: React.js, Vite, Framer Motion, Vanilla CSS (Premium Startup Theming), Lucide React
 - **Backend**: Python, FastAPI, Uvicorn, Pydantic
 - **Machine Learning**: Scikit-Learn, Pandas, NumPy, Joblib

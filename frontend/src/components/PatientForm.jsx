@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { User, Activity, FileText, ArrowRight, Loader2, HeartPulse, Droplet } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { User, Activity, ArrowRight, Loader2, HeartPulse, Droplet } from 'lucide-react';
 
 const PatientForm = ({ onSubmit, isLoading }) => {
   const [formData, setFormData] = useState({
@@ -33,25 +32,20 @@ const PatientForm = ({ onSubmit, isLoading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div style={{marginBottom: '2rem'}}>
-        <h2 style={{fontSize: '1.75rem', color: 'var(--text-main)', marginBottom: '0.25rem'}}>Patient Input Data</h2>
-        <p style={{color: 'var(--text-secondary)', fontSize: '0.95rem'}}>
-          Enter the patient's clinical markers to run the diagnostic model.
-        </p>
-      </div>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       
       {/* Demographics */}
-      <div className="form-section">
-        <h3 className="form-section-header">Demographics</h3>
+      <div className="form-section" style={{ marginBottom: '2.5rem' }}>
+        <h3 className="form-section-header">
+          <User size={20} color="var(--primary-blue)" />
+          Patient Demographics
+        </h3>
         <div className="form-grid">
           <div className="input-group">
             <label className="input-label">Age</label>
             <div className="input-wrapper">
-              <User size={18} className="input-icon" />
-              <input type="number" name="age" value={formData.age} onChange={handleChange} className="input-field has-icon" required />
+              <input type="number" name="age" value={formData.age} onChange={handleChange} className="input-field" required />
             </div>
-            <span className="input-helper">Years</span>
           </div>
           <div className="input-group">
             <label className="input-label">Biological Sex</label>
@@ -64,11 +58,26 @@ const PatientForm = ({ onSubmit, isLoading }) => {
       </div>
 
       {/* Vitals */}
-      <div className="form-section">
-        <h3 className="form-section-header">Vitals & Symptoms</h3>
+      <div className="form-section" style={{ marginBottom: '3.5rem' }}>
+        <h3 className="form-section-header">
+          <HeartPulse size={20} color="var(--primary-blue)" />
+          Primary Vitals
+        </h3>
         <div className="form-grid">
           <div className="input-group">
-            <label className="input-label">Chest Pain Type</label>
+            <label className="input-label">Resting Blood Pressure (mm Hg)</label>
+            <div className="input-wrapper">
+              <input type="number" name="trestbps" value={formData.trestbps} onChange={handleChange} className="input-field" required />
+            </div>
+          </div>
+          <div className="input-group">
+            <label className="input-label">Maximum Heart Rate (BPM)</label>
+            <div className="input-wrapper">
+              <input type="number" name="thalach" value={formData.thalach} onChange={handleChange} className="input-field" required />
+            </div>
+          </div>
+          <div className="input-group" style={{ flexBasis: '100%' }}>
+            <label className="input-label">Reported Chest Pain Type</label>
             <select name="cp" value={formData.cp} onChange={handleChange} className="select-field">
               <option value={0}>Typical Angina</option>
               <option value={1}>Atypical Angina</option>
@@ -77,56 +86,41 @@ const PatientForm = ({ onSubmit, isLoading }) => {
             </select>
           </div>
           <div className="input-group">
-            <label className="input-label">Resting Blood Pressure</label>
-            <div className="input-wrapper">
-              <HeartPulse size={18} className="input-icon" />
-              <input type="number" name="trestbps" value={formData.trestbps} onChange={handleChange} className="input-field has-icon" required />
-            </div>
-            <span className="input-helper">mm Hg (Ideal 90-120)</span>
-          </div>
-          <div className="input-group">
-            <label className="input-label">Max Heart Rate</label>
-            <div className="input-wrapper">
-              <Activity size={18} className="input-icon" />
-              <input type="number" name="thalach" value={formData.thalach} onChange={handleChange} className="input-field has-icon" required />
-            </div>
-            <span className="input-helper">BPM during exercise</span>
-          </div>
-          <div className="input-group">
             <label className="input-label">Exercise Angina</label>
             <select name="exang" value={formData.exang} onChange={handleChange} className="select-field">
-              <option value={0}>No</option>
-              <option value={1}>Yes</option>
+              <option value={0}>No (None reported)</option>
+              <option value={1}>Yes (Pain induced by exertion)</option>
             </select>
           </div>
         </div>
       </div>
 
       {/* Labs */}
-      <div className="form-section" style={{marginBottom: 0}}>
-        <h3 className="form-section-header">Lab Results</h3>
+      <div className="form-section" style={{ marginBottom: '1.5rem' }}>
+        <h3 className="form-section-header">
+          <Droplet size={20} color="var(--primary-blue)" />
+          Lab & Diagnostic Data
+        </h3>
         <div className="form-grid">
           <div className="input-group">
-            <label className="input-label">Cholesterol</label>
+            <label className="input-label">Serum Cholesterol (mg/dl)</label>
             <div className="input-wrapper">
-              <Droplet size={18} className="input-icon" />
-              <input type="number" name="chol" value={formData.chol} onChange={handleChange} className="input-field has-icon" required />
+              <input type="number" name="chol" value={formData.chol} onChange={handleChange} className="input-field" required />
             </div>
-            <span className="input-helper">mg/dl</span>
           </div>
           <div className="input-group">
-            <label className="input-label">Fasting Sugar &gt; 120</label>
+            <label className="input-label">Fasting Blood Sugar</label>
             <select name="fbs" value={formData.fbs} onChange={handleChange} className="select-field">
-              <option value={0}>False</option>
-              <option value={1}>True</option>
+              <option value={0}>Normal (&le; 120 mg/dl)</option>
+              <option value={1}>Elevated (&gt; 120 mg/dl)</option>
             </select>
           </div>
           <div className="input-group">
             <label className="input-label">Resting ECG</label>
             <select name="restecg" value={formData.restecg} onChange={handleChange} className="select-field">
               <option value={0}>Normal</option>
-              <option value={1}>ST-T Abnormality</option>
-              <option value={2}>LV Hypertrophy</option>
+              <option value={1}>ST-T Wave Abnormality</option>
+              <option value={2}>Left Ventricular Hypertrophy</option>
             </select>
           </div>
           <div className="input-group">
@@ -134,7 +128,7 @@ const PatientForm = ({ onSubmit, isLoading }) => {
             <input type="number" step="0.1" name="oldpeak" value={formData.oldpeak} onChange={handleChange} className="input-field" required />
           </div>
           <div className="input-group">
-            <label className="input-label">ST Slope</label>
+            <label className="input-label">Peak Exercise ST Slope</label>
             <select name="slope" value={formData.slope} onChange={handleChange} className="select-field">
               <option value={0}>Upsloping</option>
               <option value={1}>Flat</option>
@@ -142,15 +136,15 @@ const PatientForm = ({ onSubmit, isLoading }) => {
             </select>
           </div>
           <div className="input-group">
-            <label className="input-label">Flourosopy Vessels</label>
+            <label className="input-label">Fluoroscopy Vessels</label>
             <input type="number" name="ca" value={formData.ca} onChange={handleChange} className="input-field" min="0" max="3" required />
           </div>
           <div className="input-group">
-            <label className="input-label">Thalassemia</label>
+            <label className="input-label">Thalassemia Test</label>
             <select name="thal" value={formData.thal} onChange={handleChange} className="select-field">
-              <option value={1}>Normal</option>
+              <option value={1}>Normal Flow</option>
               <option value={2}>Fixed Defect</option>
-              <option value={3}>Reversible</option>
+              <option value={3}>Reversible Defect</option>
             </select>
           </div>
         </div>
@@ -163,17 +157,18 @@ const PatientForm = ({ onSubmit, isLoading }) => {
       >
         {isLoading ? (
           <>
-            <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} style={{ display: 'flex' }}>
-              <Loader2 size={20} /> 
-            </motion.div>
-            Processing Output...
+            <Loader2 size={20} className="spin-icon" style={{ animation: 'spin 1s linear infinite' }} />
+            Analyzing clinical patterns...
           </>
         ) : (
           <>
-             Run Diagnosis <ArrowRight size={20} />
+             Analyze Patient Risk <ArrowRight size={20} />
           </>
         )}
       </button>
+      <style>{`
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+      `}</style>
     </form>
   );
 };
