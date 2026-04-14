@@ -1,5 +1,7 @@
 # MediMind 🧠⚕️
 
+[![Live Demo On Vercel](https://img.shields.io/badge/Live_Demo-medi--mind--nu.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://medi-mind-nu.vercel.app/)
+
 A premium, production-grade clinical decision-support system utilizing Machine Learning for healthcare analytics.
 
 ## Overview
